@@ -1,0 +1,62 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code settings
+.vscode/
+
+# Rider settings
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Environment settings
+.env
+*.env
+
+# Logs
+*.log
+
+# Visual Studio working folders
+.vs/
+
+# Dependency cache
+packages/
+*.nupkg
+*.snupkg
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Temporary files
+~$*
+*.tmp
+*.bak
+*.backup
+*.cache
+*.db
+
+# Publish output
+publish/
+
+# Test results
+TestResults/
+*.TestResults
+
+# Ignore compiled DLLs/pdbs
+*.dll
+*.exe
+*.pdb
