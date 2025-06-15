@@ -10,33 +10,50 @@ namespace Hangman
     {
         protected WordChooser WordChooser = new WordChooser();
         protected GuesserWord GuesserWord = new GuesserWord();
-        public void Start()
+        protected Printer Printer;
+        protected readonly int MaxAttempts = 6;
+        protected int NumberOfAttempts = 0;
+        protected List<char> MissedLetters = new List<char>();
+        protected List<char> GuessedLetters = new List<char>();
+
+        public Game()
         {
             Console.WriteLine("Game started!");
             Console.WriteLine("Type the guessing the word");
-         
-            this.WordChooser.TypeWord();
-            Console.WriteLine(this.WordChooser.Word);
-            this.RenderSkeleton();
-            this.StartEngine();
-        }
 
-        public void RenderSkeleton()
-        {
-            Console.WriteLine("Rendering game skeleton...");
+            this.WordChooser.TypeWord();
+            this.Printer = new Printer(this.WordChooser.Word);
+            this.StartEngine();
         }
 
         public void StartEngine()
         {
-            // for(string.length(this.WordChooser.word))
-            // string res = this.GuesserWord.guess();
-            // if(string.contains(res) printout
-            Console.WriteLine("Starting game engine...");
-            // Here you would implement the logic to start the game engine,
-            // such as initializing the game state, setting up the word to guess,
-            // and preparing for player input.
+            Console.WriteLine("Game engine has started");
+            for(int i = 0; i < this.MaxAttempts; i++)
+            {
+                this.GuesserWord.Guess(this.MissedLetters, this.GuessedLetters);
+                this.NumberOfAttempts++;
+                bool missOrHit = true;
+                if (this.WordChooser.PositionsOfLetter(this.GuesserWord.GetLetter()).Count() == 0)
+                {
+                    Console.WriteLine("Letter not found, try again.");
+                    this.MissedLetters.Add(this.GuesserWord.GetLetter());
+                    missOrHit = false;
+                }
+                else
+                {
+                    Console.WriteLine("Letter found!");
+                    this.GuessedLetters.Add(this.GuesserWord.GetLetter());
+                }
+                this.Printer.Print(
+                    this.GuesserWord.GetLetter(),
+                    this.MissedLetters,
+                    this.GuessedLetters,
+                    this.MaxAttempts - this.NumberOfAttempts,
+                    missOrHit
+                );
+            }
         }
-
     }
 
 }

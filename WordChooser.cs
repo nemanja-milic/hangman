@@ -19,5 +19,19 @@ namespace Hangman
             }
             this.Word = word;
         }
+
+        public List<int> PositionsOfLetter(char letter)
+        {
+            List<int> positions = new List<int>();
+            for (int i = 0; i < this.Word.Length; i++)
+            {
+                if (this.Word[i] == letter)
+                {
+                    positions.Add(i);
+                    break;
+                }
+            }
+            return positions;
+        }
     }
 }
