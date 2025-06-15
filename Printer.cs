@@ -93,10 +93,6 @@ namespace Hangman
                 this.Skeleton(missedLettes.Count());
             }
             this.PrintDashesOfWord(guessedLetters);
-            // print first skeleton 
-            // print the dashes of the word
-            // missed letters 
-            // number of remaining attempts
         }
 
         public void PrintDashesOfWord(List<char> guessedLetters)
